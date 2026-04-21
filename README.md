@@ -1,8 +1,8 @@
 # Rubik’s Cube Solver (Color-Based)
 
-A Python-based Rubik’s Cube solver that takes raw sticker colors as input and computes a solution using the **Kociemba two-phase algorithm**.
+A Python-based Rubik’s Cube solver that takes raw sticker colors as input and generates an efficient solution using the **Kociemba two-phase algorithm**.
 
-This project converts a real-world cube state (based on colors) into a valid internal representation and generates an efficient sequence of moves to solve the cube.
+This project converts real-world cube color input into a valid internal representation and computes a sequence of moves to solve the cube.
 
 ---
 
@@ -14,119 +14,67 @@ This project converts a real-world cube state (based on colors) into a valid int
 
   * exactly 6 colors
   * each color appears 9 times
-  * consistent mapping between colors and faces
-* Converts color input into **facelet notation** required by the solver
-* Generates efficient solution sequences using the **Kociemba algorithm**
+* Converts color input → **facelet representation**
+* Generates efficient solutions using the **Kociemba algorithm**
 
 ---
 
 ## 🧠 How It Works
 
-1. **Input Parsing**
-   The user provides 54 sticker colors in a fixed order:
-
-   ```
-   U, R, F, D, L, B (each face row by row)
-   ```
-
-2. **Color Mapping**
-   The solver identifies the **center color of each face** and maps it to standard cube notation:
-
-   ```
-   U, R, F, D, L, B
-   ```
-
-3. **Validation**
-   Ensures the cube configuration is valid:
-
-   * exactly 6 distinct colors
-   * each color appears exactly 9 times
-
-4. **Transformation**
-   Converts the cube into a **facelet string** format required by the Kociemba solver.
-
-5. **Solving**
-   Uses the Kociemba two-phase algorithm to compute a solution:
-
-   ```
-   Example output: R U R' U' F2 ...
-   ```
+1. Input 54 sticker colors in face order (U, R, F, D, L, B)
+2. Detect center colors to map faces
+3. Validate cube consistency
+4. Convert to solver format
+5. Generate solution moves
 
 ---
 
-## 📥 Input Format
+## 📥 Input Example
 
-You must provide **54 characters**, representing the cube:
-
-Example:
-
+```text
+U: WWRWWRWWW
+R: RRRRRRRRR
+F: GGGGGGGGG
+D: YYYYYYYYY
+L: OOOOOOOOO
+B: BBBBBBBBB
 ```
-Enter 9 colors for face U: WWRWWRWWW
-Enter 9 colors for face R: RRRRRRRRR
-Enter 9 colors for face F: GGGGGGGGG
-Enter 9 colors for face D: YYYYYYYYY
-Enter 9 colors for face L: OOOOOOOOO
-Enter 9 colors for face B: BBBBBBBBB
-```
-
-* Each face is entered **row by row**
-* Use single-letter colors:
-
-  ```
-  W (white), Y (yellow), R (red), O (orange), G (green), B (blue)
-  ```
 
 ---
 
-## 📤 Example
+## 📤 Example Output
 
-### Input
-
-```
-WWRWWRWWW
-RRRRRRRRR
-GGGGGGGGG
-YYYYYYYYY
-OOOOOOOOO
-BBBBBBBBB
-```
-
-### Output
-
-```
+```text
 R U R' U' F2 ...
 ```
 
-(The exact solution will vary depending on the cube state.)
+(The exact solution varies depending on the cube state.)
 
 ---
 
 ## ⚙️ Installation
 
 ```bash
-pip install kociemba
+pip install -r requirements.txt
 ```
 
 ---
 
-## ▶️ Running the Solver
+## ▶️ Run
 
 ```bash
 python speedcube_solver.py
 ```
 
-Then follow the prompts to enter cube colors.
-
 ---
 
-## 📐 Move Efficiency and "God’s Number"
+## 📐 Move Efficiency and “God’s Number”
 
-The solver uses the **Kociemba two-phase algorithm**, which produces **highly efficient solutions** in a small number of moves.
+This solver uses the **Kociemba two-phase algorithm**, which produces highly efficient solutions.
 
-In Rubik’s Cube theory, **“God’s Number”** refers to the *minimum number of moves required to solve any cube configuration*.
-This value has been proven to be **20 moves or fewer** in the half-turn metric.
+In Rubik’s Cube theory, **God’s Number** is the minimum number of moves required to solve any cube configuration (proven to be ≤ 20 moves).
 
-While this solver does **not guarantee the absolute optimal (God’s Number) solution**, it consistently generates **near-optimal solutions** that are close to the theoretical minimum.
+While this solver does **not guarantee optimal solutions**, it consistently produces **near-optimal solutions close to the theoretical minimum**.
 
 ---
 
@@ -134,23 +82,22 @@ While this solver does **not guarantee the absolute optimal (God’s Number) sol
 
 * Python
 * Kociemba Algorithm
-* Data structures (lists, dictionaries)
-* Input validation and transformation logic
+* Data structures and validation logic
 
 ---
 
 ## 💡 Inspiration
 
-Inspired by competitive speedcubing, this project bridges real-world cube states with algorithmic solving techniques, converting raw color input into efficient solution sequences.
+Inspired by competitive speedcubing, this project bridges physical cube states and algorithmic solving techniques.
 
 ---
 
 ## 📌 Notes
 
-* The solver assumes a **physically valid cube configuration**
-* Invalid color layouts will raise errors
-* Solutions are given in standard cube notation:
+* Input must represent a valid cube configuration
+* Invalid inputs will raise errors
+* Output uses standard cube notation:
 
-  ```
-  R, U, L, D, F, B, with modifiers like ' and 2
-  ```
+  * R, U, L, D, F, B
+  * ' = counterclockwise
+  * 2 = double turn
