@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Type checking cache (VERY important for you)
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+.env
+
+# VSCode
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Logs
+*.log
