@@ -93,7 +93,7 @@ I compete in speedcubing and currently average around 14 seconds on a 3x3. Outsi
 
 ## 📌 Notes
 
-* Input must represent a valid cube configuration (1 Center, 4 Edges, & 4 Coners for each Color)
+* Input must represent a valid cube configuration (1 Center, 4 Edges, & 4 Corners per Color)
 * Invalid inputs will raise errors
 * Output uses standard cube notation:
 
