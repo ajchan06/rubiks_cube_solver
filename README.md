@@ -87,8 +87,7 @@ While this solver does **not guarantee optimal solutions**, it consistently prod
 ---
 
 ## 💡 Inspiration
-
-Inspired by competitive speedcubing, this project bridges physical cube states and algorithmic solving techniques.
+I compete in speedcubing and currently average around 14 seconds on a 3x3. Outside of competition, I've always been curious about what's actually happening algorithmically when a cube gets solved not just physically but mathematically. This project is my attempt to explore this idea. By implementing the Kociemba two-phase algorithm, I got to explore the same problem I solve with my hands, but from a computer science perspective.
 
 ---
 
